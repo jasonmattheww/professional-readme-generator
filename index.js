@@ -27,11 +27,6 @@ const questions = [
   },
   {
     type: 'input',
-    name: 'table of contents',
-    message: 'Add table of contents',
-  },
-  {
-    type: 'input',
     name: 'installation',
     message: 'What are the steps to install your project?',
   },
@@ -47,24 +42,27 @@ const questions = [
   },
   {
     type: 'input',
-    name: 'test',
+    name: 'tests',
     message: 'Write tests for your application and how to use them',
-  },
-  {
-    type: 'input',
-    name: 'questions',
-    message: 'List instructions for those who want to contact you',
   },
   {
     type: 'confirm',
     name: 'confirmLicense',
     message: 'Would you like to include a license?',
+    default: false
   },
   {
     type: 'list',
     name: 'licenses',
     message: 'Choose a license',
-    choices: ['MIT', 'GPL', 'Apache-2.0'],
+    choices: ['MIT', 'GPL', 'Fair'],
+    when: ({ confirmLicense }) => {
+      if (confirmLicense) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 ];
 
